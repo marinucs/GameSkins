@@ -8,19 +8,11 @@ aquellas que son adquiridas por el usuario, se almacenan en una base de datos em
 ---
 ## Tabla de contenidos
 
-- [Información sobre el repositorio](#información-sobre-el-repositorio)
-  - [Tecnologías utilizadas](#tecnologías-utilizadas)
-  - [Dependencias importantes](#dependencias-importantes)
-  - [Otras herramientas y características](#otras-herramientas-y-características)
-  - [Script de construcción y configuración](#script-de-construcción-y-configuración)
-- [Instrucciones para la ejecución](#instrucciones-para-la-ejecución)
-  - [Clona el repositorio](#clona-el-repositorio)
-  - [Ejecuta la aplicación](#ejecuta-la-aplicación)
+- [Ejecuta la aplicación](#ejecuta-la-aplicación)
 - [Interactúa con la API](#interactúa-con-la-api)
-  - [Herramientas disponibles](#herramientas-disponibles)
-      - [Opción 1. Usa `Swagger`](#opción-1-usa-swagger)
-      - [Opción 2. Método `cURL`](#opción-2-método-curl)
-      - [Opción 3. Utiliza `Postman` o `Insomnia`](#opción-3-utiliza-postman-o-insomnia)
+    - [Opción 1. Usa `Swagger`](#opción-1-usa-swagger)
+    - [Opción 2. Método `cURL`](#opción-2-método-curl)
+    - [Opción 3. Utiliza `Postman` o `Insomnia`](#opción-3-utiliza-postman-o-insomnia)
   - [Endpoints](#endpoints)
     - [GET /skins/available](#get-skinsavailable)
     - [POST /skins/buy](#post-skinsbuy)
@@ -36,58 +28,23 @@ aquellas que son adquiridas por el usuario, se almacenan en una base de datos em
     - [Eliminar una skin no comprada](#eliminar-una-skin-no-comprada)
   - [Detener la aplicación](#detener-la-aplicación)
     - [Liberar puerto](#liberar-puerto)
+- [Información sobre el repositorio](#información-sobre-el-repositorio)
+  - [Desarrollo de aplicación](#desarrollo-de-aplicación)
+  - [Gestión de datos](#gestión-de-datos)
+  - [Documentación de la API](#documentación-de-la-api)
+  - [Simplificación de código](#simplificación-de-código)
+  - [Pruebas y validación](#pruebas-y-validación)
+  - [Manejo de datos y conversión](#manejo-de-datos-y-conversión)
 
 ---
 
-## Información sobre el repositorio
+## Ejecuta la aplicación
 
-A continuación, se detallan las tecnologías utilizadas en el desarrollo de la API, las dependencias importantes, y otras herramientas y características.
-
-### Tecnologías utilizadas
-
-- **Java:** Versión 23
-- **Spring Boot:** Versión 3.3.5
-- **Gradle:** Sistema de compilación y gestión de dependencias.
-- **Hibernate:** Implementación de JPA y dialectos comunitarios.
-- **SQLite JDBC:** Base de datos embebida (`sqlite-jdbc` versión 3.47.0.0).
-- **Lombok:** Para simplificar el código eliminando el "boilerplate".
-- **SpringDoc OpenAPI:** Para documentación de la API (`springdoc-openapi-starter-webmvc-ui` versión 2.2.0).
-- **Junit 5:** Para realizar las pruebas de la aplicación.
-- **Spring REST Docs:** Para la generación de documentación.
-
-### Dependencias importantes
-
-- **Spring Boot Starter Data JPA y Web**: Para la gestión de datos y desarrollo de la API REST.
-- **Jackson Databind (versión 2.15.2)**: Para el mapeo de objetos Java a JSON y viceversa.
-- **SQLite JDBC**: Base de datos ligera para almacenamiento de datos.
-- **Lombok**: Para anotaciones que facilitan la escritura del código.
-- **Swagger/OpenAPI**: Para documentar y probar la API de forma interactiva.
-
-### Otras herramientas y características
-
-- **Asciidoctor**: Para generar documentación a partir de snippets de pruebas.
-- **Swagger**: Permite la documentación interactiva de la API.
-- **Pruebas con JUnit**: Uso de JUnit 5 para pruebas unitarias e integración.
-
-### Script de construcción y configuración
-
-- **build.gradle**: Define la configuración del proyecto, incluyendo el uso de `Java 23`, dependencias como Spring Boot y otras bibliotecas necesarias.
-- **settings.gradle**: Nombre del proyecto definido como `GameSkins`.
-
----
-
-## Instrucciones para la ejecución
-
-- **Requisitos previos**: Java 23 y Gradle instalados en el sistema.
-- **Ejecutar la aplicación**: Puedes clonar el repositorio y luego utilizar el comando `./gradlew bootRun` para iniciar la aplicación.
-
-### Clona el repositorio
+Clona el repositorio y usa `./gradlew bootRun` para iniciar la aplicación.
 
 ```bash
 git clone https://github.com/marinucs/GameSkins.git
   ```
-
-### Ejecuta la aplicación
 
 Por defecto, la aplicación de Spring Boot con un servidor Tomcat integrado se ejecutará en el puerto 8080. Para cambiar el puerto, modifica la propiedad `server.port` en el archivo `application.properties` que se encuentra en la carpeta `src/main/resources`.
 
@@ -97,13 +54,9 @@ Por defecto, la aplicación de Spring Boot con un servidor Tomcat integrado se e
 
 ---
 
-# Interactúa con la API
+## Interactúa con la API
 
 En esta sección se detallan los endpoints disponibles en la API, las herramientas disponibles para interactuar con ella, y las pruebas que puedes realizar.
-
-## Herramientas disponibles
-
-Aquí tienes algunas ideas.
 
 ### Opción 1. Usa `Swagger`
 Abre el navegador y accede a la URL [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
@@ -154,7 +107,6 @@ curl -X GET "http://localhost:8080/skins/available"
     "price": 1350,
     "color": "Orange"
   }
-  // Más skins...
 ]
 ```
 
@@ -168,7 +120,7 @@ Permite a los usuarios adquirir una skin específica mediante su ID.
 curl -X POST "http://localhost:8080/skins/buy?id=1"
 ```
 
-**Respuesta exitosa:**
+**Respuesta esperada:**
 
 ```json
 {
@@ -201,7 +153,6 @@ curl -X GET "http://localhost:8080/skins/myskins"
     "price": 1350,
     "color": "Blue"
   }
-  // Más skins compradas...
 ]
 ```
 
@@ -217,7 +168,7 @@ Las opciones disponibles son: RED, BLUE, GREEN, YELLOW, BLACK, WHITE, ORANGE, ME
 curl -X PUT "http://localhost:8080/skins/color?id=1&color=Golden"
 ```
 
-**Respuesta exitosa:**
+**Respuesta esperada:**
 
 ```json
 {
@@ -239,7 +190,7 @@ Permite a los usuarios eliminar una skin comprada mediante su ID.
 curl -X DELETE "http://localhost:8080/skins/delete/1"
 ```
 
-**Respuesta exitosa:**
+**Respuesta esperada:**
 
 - **Código de estado:** `204 No Content`
 
@@ -383,7 +334,7 @@ curl -X DELETE "http://localhost:8080/skins/delete/999"
 
 Para detener una aplicación Spring Boot que has ejecutado con el comando `./gradlew bootRun`, haz `CTRL + C` en la terminal.
 
-### Liberar puerto 
+### Liberar puerto
 
 En el caso de que el puerto siga ocupado después de detener la aplicación, puedes liberarlo identificando el PID del proceso y deteniéndolo.
 
@@ -411,4 +362,40 @@ En **Windows**:
 
 ---
 
+## Información sobre el repositorio
+
+A continuación, se detallan las tecnologías utilizadas en el desarrollo de la API, las dependencias importantes, y otras herramientas y características.
+
+### Desarrollo de aplicación
+
+- **Java (versión 23)**: Lenguaje de programación principal para la aplicación.
+- **Spring Boot (versión 3.3.5)**: Framework para el desarrollo de aplicaciones RESTful con características preconfiguradas.
+- **Gradle**: Sistema de compilación y gestión de dependencias para automatizar la construcción del proyecto.
+
+### Gestión de datos
+
+- **Hibernate**: Implementación de JPA (Java Persistence API) que facilita la interacción con bases de datos, incluyendo soporte para dialectos comunitarios.
+- **Spring Boot Starter Data JPA**: Parte del ecosistema de Spring que ayuda a manejar la persistencia de datos con Hibernate.
+- **SQLite JDBC (versión 3.47.0.0)**: Base de datos embebida ligera que permite almacenar los datos de la aplicación sin necesidad de un servidor de base de datos independiente.
+
+### Documentación de la API
+
+- **SpringDoc OpenAPI (versión 2.2.0)**: Utilizado para generar documentación interactiva de la API REST (con soporte Swagger).
+- **Swagger/OpenAPI**: Herramienta para documentar y probar la API de manera interactiva.
+- **Asciidoctor**: Permite generar documentación HTML o PDF a partir de fragmentos de pruebas automatizadas y ejemplos de uso.
+
+### Simplificación de código
+
+- **Lombok**: Biblioteca que elimina la necesidad de escribir código repetitivo (boilerplate) en Java mediante anotaciones, como getters, setters y constructores.
+
+### Pruebas y validación
+
+- **JUnit 5**: Framework para la creación y ejecución de pruebas unitarias e integradas.
+- **Spring REST Docs**: Herramienta para generar documentación de la API a partir de las pruebas, facilitando la comprensión y el uso de los servicios REST.
+
+### Manejo de datos y conversión
+
+- **Jackson Databind (versión 2.15.2)**: Biblioteca utilizada para la serialización/deserialización de objetos Java a JSON y viceversa, facilitando el intercambio de datos entre la API y sus consumidores.
+
+---
 Hasta aquí la documentación de la API. ¡Gracias por leer! ^o^
