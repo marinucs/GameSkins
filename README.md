@@ -34,7 +34,7 @@ Sigue los pasos a continuación para clonar el repositorio y ejecutar la aplicac
 ### Clona el repositorio
 
 ```bash
-git clone https://github.com/marinucs/GameSkins
+git clone https://github.com/marinucs/GameSkins.git
   ```
 
 ### Ejecuta la aplicación
