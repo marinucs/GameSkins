@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS purchased_skins (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    price REAL NOT NULL,
+    color TEXT NOT NULL
+);
