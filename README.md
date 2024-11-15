@@ -74,6 +74,8 @@ A continuación, se detallan las tecnologías utilizadas en el desarrollo de la 
 - **build.gradle**: Define la configuración del proyecto, incluyendo el uso de `Java 23`, dependencias como Spring Boot y otras bibliotecas necesarias.
 - **settings.gradle**: Nombre del proyecto definido como `GameSkins`.
 
+---
+
 ## Instrucciones para la ejecución
 
 - **Requisitos previos**: Java 23 y Gradle instalados en el sistema.
