@@ -8,7 +8,6 @@ aquellas que son adquiridas por el usuario, se almacenan en una base de datos em
 ---
 ## Tabla de contenidos
 
-- [GameSkinsAPI](#gameskinsapi)
 - [Información sobre el repositorio](#información-sobre-el-repositorio)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
 - [Dependencias importantes](#dependencias-importantes)
@@ -17,7 +16,7 @@ aquellas que son adquiridas por el usuario, se almacenan en una base de datos em
   - [Instrucciones para la ejecución](#instrucciones-para-la-ejecución)
     - [Clona el repositorio](#clona-el-repositorio)
     - [Ejecuta la aplicación](#ejecuta-la-aplicación)
-- [Documentación de la API](#documentación-de-la-api)
+- [Interactúa con la API](#interactúa-con-la-api)
   - [Herramientas disponibles](#herramientas-disponibles)
       - [Opción 1. Usa `Swagger`](#opción-1-usa-swagger)
       - [Opción 2. Método `cURL`](#opción-2-método-curl)
@@ -96,7 +95,7 @@ Por defecto, la aplicación de Spring Boot con un servidor Tomcat integrado se e
 
 ---
 
-# Documentación de la API
+# Interactúa con la API
 
 En esta sección se detallan los endpoints disponibles en la API, las herramientas disponibles para interactuar con ella, y las pruebas que puedes realizar.
 
