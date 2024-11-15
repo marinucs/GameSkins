@@ -46,7 +46,8 @@ Clona el repositorio y usa `./gradlew bootRun` para iniciar la aplicación.
 git clone https://github.com/marinucs/GameSkins.git
   ```
 
-Por defecto, la aplicación de Spring Boot con un servidor Tomcat integrado se ejecutará en el puerto 8080. Para cambiar el puerto, modifica la propiedad `server.port` en el archivo `application.properties` que se encuentra en la carpeta `src/main/resources`.
+Por defecto, la aplicación de Spring Boot con un servidor Tomcat integrado se ejecutará en el puerto 8080. 
+Para cambiarlo, introduce el nuevo en la propiedad `server.port` de `src/main/resources/application.properties`.
 
 ---
 
