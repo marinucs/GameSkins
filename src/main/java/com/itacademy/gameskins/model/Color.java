@@ -21,7 +21,7 @@ public enum Color {
         try {
             return Color.valueOf(color.trim().toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new InvalidColorException(color, e);
+            throw new InvalidColorException(color);
         }
     }
 }

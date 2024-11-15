@@ -1,13 +1,13 @@
-//package com.itacademy.gameskins;
-//
-//import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
-//
-//@SpringBootTest
-//class GameSkinsApplicationTests {
-//
-//    @Test
-//    void contextLoads() {
-//    }
-//
-//}
+package com.itacademy.gameskins;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class GameSkinsApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

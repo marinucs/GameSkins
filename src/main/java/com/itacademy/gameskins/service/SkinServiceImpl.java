@@ -77,7 +77,7 @@ public class SkinServiceImpl implements SkinService {
             color = Color.fromString(colorValue);
         } catch (IllegalArgumentException e) {
             // logger.error("Color {} not valid", colorValue);
-            throw new InvalidColorException(colorValue, e);
+            throw new InvalidColorException(colorValue);
         }
 
         // Retrieve the skin

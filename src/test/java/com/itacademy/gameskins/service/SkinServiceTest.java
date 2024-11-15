@@ -8,6 +8,7 @@ import com.itacademy.gameskins.model.Color;
 import com.itacademy.gameskins.model.Skin;
 import com.itacademy.gameskins.repository.PurchasedSkinRepository;
 import com.itacademy.gameskins.util.SkinLoader;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -34,9 +36,18 @@ class SkinServiceTest {
     @InjectMocks
     private SkinServiceImpl skinService;
 
+    private AutoCloseable mocks;
+
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        mocks = MockitoAnnotations.openMocks(this);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        if (mocks != null) {
+            mocks.close();
+        }
     }
 
     private Skin createTestSkin() {
@@ -56,7 +67,7 @@ class SkinServiceTest {
         // Assert
         assertNotNull(result, "The result should not be null");
         assertEquals(1, result.size(), "There should be exactly one skin available");
-        assertEquals(testSkin, result.get(0), "The skin should match the test skin");
+        assertEquals(testSkin, result.getFirst(), "The skin should match the test skin");
         verify(skinLoader, times(1)).getAvailableSkins();
     }
 
@@ -130,7 +141,7 @@ class SkinServiceTest {
         // Assert
         assertNotNull(result, "The result should not be null");
         assertEquals(1, result.size(), "There should be exactly one purchased skin");
-        assertEquals(testSkin, result.get(0), "The skin should match the test skin");
+        assertEquals(testSkin, result.getFirst(), "The skin should match the test skin");
         verify(purchasedSkinRepository, times(1)).findAll();
     }
 
@@ -158,11 +169,18 @@ class SkinServiceTest {
     void updateSkinColor_ShouldThrowException_WhenColorInvalid() {
         // Arrange
         Long skinId = 1L;
+        String colorValue = "InvalidColor";
+//        when(purchasedSkinRepository.findById(skinId)).thenReturn(Optional.empty());
 
         // Act & Assert
-//        InvalidColorException exception = assertThrows(InvalidColorException.class,
-//                () -> skinService.updateSkinColor(skinId, "InvalidColor"),
-//                "Expected InvalidColorException to be thrown");
+        InvalidColorException exception = assertThrows(InvalidColorException.class,
+                () -> skinService.updateSkinColor(skinId, colorValue),
+                "Expected InvalidColorException to be thrown");
+        assertEquals(String.format("Color value <%s> is not valid | Available colors: %s",
+                colorValue,
+                Arrays.toString(Color.values())),
+                exception.getMessage(),
+                "Exception message should match");
         verify(purchasedSkinRepository, never()).save(any());
     }
 
@@ -191,6 +209,7 @@ class SkinServiceTest {
         SkinNotPurchasedException exception = assertThrows(SkinNotPurchasedException.class,
                 () -> skinService.deleteSkin(skinId),
                 "Expected SkinNotPurchasedException to be thrown");
-        assertEquals("Skin with ID 1 has not been purchased and cannot be modified or deleted.", exception.getMessage(), "Exception message should match");
+        assertEquals(String.format("Skin with ID %d has not been purchased and cannot be modified or deleted.", skinId), exception.getMessage(), "Exception message should match");
     }
+
 }
