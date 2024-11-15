@@ -39,18 +39,10 @@ git clone https://github.com/marinucs/GameSkins.git
 
 ### Ejecuta la aplicación
 
-Aquí tienes un par de sugerencias.
-
 `Gradle`
 ```bash
 ./gradlew bootRun
 ```
-
-`JAR`
-
-```bash
-java -jar build/libs/GameSkins-0.0.1-SNAPSHOT.jar
-  ```
 
 ---
 
