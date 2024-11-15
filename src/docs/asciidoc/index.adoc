@@ -1,0 +1,15 @@
+:generated-snippets: ../../../build/generated-snippets
+
+== Endpoints
+
+=== Obtener skins disponibles
+
+[source,http]
+----
+include::{generated-snippets}/available-skins/http-request.adoc[]
+----
+
+[source,http]
+----
+include::{generated-snippets}/available-skins/http-response.adoc[]
+----

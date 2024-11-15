@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Ashe Crystal Archer",
+    "type": "Epic",
+    "price": 1350,
+    "color": "Blue"
+  },
+  {
+    "id": 2,
+    "name": "Zed Crimson Shadow",
+    "type": "Legendary",
+    "price": 1820,
+    "color": "Red"
+  },
+  {
+    "id": 3,
+    "name": "Lux Lady of Flames",
+    "type": "Epic",
+    "price": 1350,
+    "color": "Orange"
+  },
+  {
+    "id": 4,
+    "name": "Jinx Heavy Metal",
+    "type": "Epic",
+    "price": 1350,
+    "color": "Metallic"
+  },
+  {
+    "id": 5,
+    "name": "Ezreal Protector of the Horizon",
+    "type": "Legendary",
+    "price": 1820,
+    "color": "Blue"
+  },
+  {
+    "id": 6,
+    "name": "K/DA Ahri",
+    "type": "Mythic",
+    "price": 2150,
+    "color": "White"
+  },
+  {
+    "id": 7,
+    "name": "Miss Fortune Black Death",
+    "type": "Epic",
+    "price": 1350,
+    "color": "Black"
+  },
+  {
+    "id": 8,
+    "name": "Riven Championship",
+    "type": "Legendary",
+    "price": 1820,
+    "color": "Golden"
+  },
+  {
+    "id": 9,
+    "name": "Akali Prodigy of Chaos",
+    "type": "Epic",
+    "price": 1350,
+    "color": "Purple"
+  },
+  {
+    "id": 10,
+    "name": "Katarina World Championship",
+    "type": "Mythic",
+    "price": 2150,
+    "color": "Red"
+  }
+]
