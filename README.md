@@ -2,11 +2,21 @@
 
 API que permite a los usuarios consultar, adquirir, modificar y eliminar skins de un videojuego.
 
+Las skins disponibles se leen desde un archivo en formato JSON y 
+aquellas que son adquiridas por el usuario, se almacenan en una base de datos embebida `SQLite`.
+
+---
 ## Tabla de contenidos
 
-- [Instrucciones](#instrucciones)
-  - [Clona el repositorio](#clona-el-repositorio)
-  - [Ejecuta la aplicación](#ejecuta-la-aplicación)
+- [GameSkinsAPI](#gameskinsapi)
+- [Información sobre el repositorio](#información-sobre-el-repositorio)
+- [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Dependencias importantes](#dependencias-importantes)
+- [Otras herramientas y características](#otras-herramientas-y-características)
+- [Script de construcción y configuración](#script-de-construcción-y-configuración)
+  - [Instrucciones para la ejecución](#instrucciones-para-la-ejecución)
+    - [Clona el repositorio](#clona-el-repositorio)
+    - [Ejecuta la aplicación](#ejecuta-la-aplicación)
 - [Documentación de la API](#documentación-de-la-api)
   - [Herramientas disponibles](#herramientas-disponibles)
       - [Opción 1. Usa `Swagger`](#opción-1-usa-swagger)
@@ -25,11 +35,50 @@ API que permite a los usuarios consultar, adquirir, modificar y eliminar skins d
     - [Actualizar color de skin no comprada](#actualizar-color-de-skin-no-comprada)
     - [Introducir un color inválido](#introducir-un-color-inválido)
     - [Eliminar una skin no comprada](#eliminar-una-skin-no-comprada)
+  - [Detener la aplicación](#detener-la-aplicación)
+    - [Liberar puerto](#liberar-puerto)
 
+---
 
-## Instrucciones
+## Información sobre el repositorio
 
-Sigue los pasos a continuación para clonar el repositorio y ejecutar la aplicación.
+A continuación, se detallan las tecnologías utilizadas en el desarrollo de la API, las dependencias importantes, y otras herramientas y características.
+
+### Tecnologías utilizadas
+
+- **Java:** Versión 23
+- **Spring Boot:** Versión 3.3.5
+- **Gradle:** Sistema de compilación y gestión de dependencias.
+- **Hibernate:** Implementación de JPA y dialectos comunitarios.
+- **SQLite JDBC:** Base de datos embebida (`sqlite-jdbc` versión 3.47.0.0).
+- **Lombok:** Para simplificar el código eliminando el "boilerplate".
+- **SpringDoc OpenAPI:** Para documentación de la API (`springdoc-openapi-starter-webmvc-ui` versión 2.2.0).
+- **Junit 5:** Para realizar las pruebas de la aplicación.
+- **Spring REST Docs:** Para la generación de documentación.
+
+### Dependencias importantes
+
+- **Spring Boot Starter Data JPA y Web**: Para la gestión de datos y desarrollo de la API REST.
+- **Jackson Databind (versión 2.15.2)**: Para el mapeo de objetos Java a JSON y viceversa.
+- **SQLite JDBC**: Base de datos ligera para almacenamiento de datos.
+- **Lombok**: Para anotaciones que facilitan la escritura del código.
+- **Swagger/OpenAPI**: Para documentar y probar la API de forma interactiva.
+
+### Otras herramientas y características
+
+- **Asciidoctor**: Para generar documentación a partir de snippets de pruebas.
+- **Swagger**: Permite la documentación interactiva de la API.
+- **Pruebas con JUnit**: Uso de JUnit 5 para pruebas unitarias e integración.
+
+### Script de construcción y configuración
+
+- **build.gradle**: Define la configuración del proyecto, incluyendo el uso de `Java 23`, dependencias como Spring Boot y otras bibliotecas necesarias.
+- **settings.gradle**: Nombre del proyecto definido como `GameSkins`.
+
+### Instrucciones para la ejecución
+
+- **Requisitos previos**: Java 23 y Gradle instalados en el sistema.
+- **Ejecutar la aplicación**: Puedes clonar el repositorio y luego utilizar el comando `./gradlew bootRun` para iniciar la aplicación.
 
 ### Clona el repositorio
 
@@ -39,7 +88,8 @@ git clone https://github.com/marinucs/GameSkins.git
 
 ### Ejecuta la aplicación
 
-`Gradle`
+Por defecto, la aplicación de Spring Boot con un servidor Tomcat integrado se ejecutará en el puerto 8080. Para cambiar el puerto, modifica la propiedad `server.port` en el archivo `application.properties` que se encuentra en la carpeta `src/main/resources`.
+
 ```bash
 ./gradlew bootRun
 ```
@@ -54,7 +104,7 @@ En esta sección se detallan los endpoints disponibles en la API, las herramient
 
 Aquí tienes algunas ideas.
 
-###  Opción 1. Usa `Swagger`
+### Opción 1. Usa `Swagger`
 Abre el navegador y accede a la URL [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 
 ### Opción 2. Método `cURL`
@@ -325,6 +375,38 @@ curl -X DELETE "http://localhost:8080/skins/delete/999"
 ```
 
 **Código de estado HTTP:** `400 Bad Request`
+
+---
+
+## Detener la aplicación
+
+Para detener una aplicación Spring Boot que has ejecutado con el comando `./gradlew bootRun`, haz `CTRL + C` en la terminal.
+
+### Liberar puerto 
+
+En el caso de que el puerto siga ocupado después de detener la aplicación, puedes liberarlo identificando el PID del proceso y deteniéndolo.
+
+En **Linux/macOS**:
+  ```sh
+  lsof -i :8080
+  ```
+
+En **Windows**:
+  ```cmd
+  netstat -ano | findstr :8080
+  ```
+
+Una vez identificado el PID, ejecuta el siguiente comando para detener el proceso.
+
+En **Linux/macOS**:
+  ```sh
+  kill -9 00000
+  ```
+
+En **Windows**:
+  ```cmd
+  taskkill /PID 00000 /F
+  ```
 
 ---
 
